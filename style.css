@@ -1533,3 +1533,50 @@ margin-bottom: 10px;
   .book-btn { min-width: 85px; padding: 8px 12px; font-size: 0.85rem; }
   .price { font-size: 1rem; }
 }
+/* Horizontal layout for tiny screens */
+@media screen and (max-width: 400px) {
+  .search-bar {
+    padding: 10px 0;
+  }
+  
+  .search-container {
+    padding: 0 10px;
+  }
+  
+  .search-box {
+    flex-direction: row;
+    gap: 5px;
+    max-width: 100%;
+  }
+  
+  .search-input {
+    height: 36px;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 4px 0 0 4px;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .search-button {
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 0 4px 4px 0;
+    font-size: 12px;
+    min-width: 60px;
+    white-space: nowrap;
+  }
+  
+  .autocomplete {
+    width: 100%;
+  }
+  
+  .autocomplete-items {
+    font-size: 12px;
+  }
+  
+  .autocomplete-items div {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
