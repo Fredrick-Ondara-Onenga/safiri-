@@ -4,7 +4,7 @@ const heroTitle = document.getElementById('hero-title');
 const heroCaption = document.getElementById('hero-caption');
 
 const slides = [
-  { image: 'Zanzibar.jpg' },
+  { image: 'amboseli.jpg' },
   { image: 'cairo.jpg' },
   { image: 'picha3.jpg' },
   { image: 'southa.jpg' },
