@@ -1487,7 +1487,7 @@ margin-bottom: 10px;
         display: flex;
       }
       .slider-title{
-        font-size: 26px;
+        font-size: 20px;
       }
     }
 
@@ -1665,4 +1665,5 @@ margin-bottom: 10px;
     .twp-title {
       font-size: 20px;
     }
+
   }
