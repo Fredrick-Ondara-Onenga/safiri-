@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Your Adventure | Safiri Adventures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #e67e22;
+      --primary-dark: #d35400;
+      --dark: #2c3e50;
+      --light-bg: #f8f9fa;
+      --border: #e1e5e9;
+      --success: #27ae60;
+      --whatsapp: #25D366;
+      --facebook: #1877F2;
+      --instagram: #E4405F;
+      --email: #EA4335;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+      min-height: 100vh;
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .nav-bar {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 50px;
+      position: relative;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-logo {
+      height: 90px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      width: 30px;
+      height: 25px;
+    }
+
+    .hamburger span {
+      height: 3px;
+      background-color: #007bff;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-bar {
+        padding: 15px 25px;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 90px;
+        right: 0;
+        width: 100%;
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 17px;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 2.5rem;
+    }
+
+    .payment-section {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      text-align: center;
+    }
+
+    .section-subtitle {
+      color: #666;
+      margin-bottom: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .payment-options {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .payment-option {
+      background: #f8f9fa;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .payment-option:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(230, 126, 34, 0.1);
+    }
+
+    .payment-option.active {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, #fffaf5 0%, #fef8f4 100%);
+    }
+
+    .option-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .option-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .icon-arrival {
+      background: var(--success);
+    }
+
+    .icon-agent {
+      background: var(--primary);
+    }
+
+    .option-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .option-description {
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--dark);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .contact-method:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-method.whatsapp:hover {
+      border-color: var(--whatsapp);
+      color: var(--whatsapp);
+    }
+
+    .contact-method.facebook:hover {
+      border-color: var(--facebook);
+      color: var(--facebook);
+    }
+
+    .contact-method.instagram:hover {
+      border-color: var(--instagram);
+      color: var(--instagram);
+    }
+
+    .contact-method.email:hover {
+      border-color: var(--email);
+      color: var(--email);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    .icon-whatsapp { background: var(--whatsapp); }
+    .icon-facebook { background: var(--facebook); }
+    .icon-instagram { background: var(--instagram); }
+    .icon-email { background: var(--email); }
+
+    .contact-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+    }
+
+    .action-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .confirm-button {
+      flex: 1;
+      background: linear-gradient(135deg, var(--success) 0%, #2ecc71 100%);
+      color: white;
+      border: none;
+      padding: 1.2rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .confirm-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
+    }
+
+    .summary-section {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      height: fit-content;
+      position: sticky;
+      top: 2rem;
+    }
+
+    .summary-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+      text-align: center;
+    }
+
+    .booking-image {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .booking-details h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .booking-description {
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+    }
+
+    .price-breakdown {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+      margin: 1.5rem 0;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .price-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .price-total {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .security-notice {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #666;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .security-notice i {
+      color: var(--success);
+      margin-right: 0.5rem;
+    }
+
+    .footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer p {
+      font-family: 'Playfair Display', serif;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 968px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .summary-section {
+        position: static;
+        order: -1;
+      }
+
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+      }
+
+      .payment-section, .summary-section {
+        padding: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+      }
+
+      .option-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .payment-section, .summary-section {
+        padding: 1.2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .payment-option {
+        padding: 1.5rem;
+      }
+
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <img src="logo.png" alt="Safiri Affairs Logo" class="nav-logo">
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="hotel.html">Hotels</a>
+      <a href="indexed.html">Cars</a>
+      <a href="index.html">Contact</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section class="payment-section">
+      <h1 class="section-title">Choose Your Booking Method</h1>
+      <p class="section-subtitle">Select how you'd like to proceed with your adventure</p>
+
+      <div class="payment-options">
+        <div class="payment-option" id="contactAgentOption">
+          <div class="option-header">
+            <div class="option-icon icon-agent">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3 class="option-title">Contact Our Travel Expert</h3>
+          </div>
+          <p class="option-description">
+            Prefer personalized assistance? Our travel experts will help you customize your trip, answer questions, and arrange payment securely.
+          </p>
+          
+          <div class="contact-methods">
+            <a href="https://wa.me/254700497619?text=Hi%20Safiri%20Adventures!%20I'm%20interested%20in%20booking%20a%20trip." 
+               class="contact-method whatsapp" target="_blank">
+              <div class="contact-icon icon-whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <span class="contact-text">WhatsApp</span>
+            </a>
+            <a href="https://www.facebook.com/safiriaffairs" class="contact-method facebook" target="_blank">
+              <div class="contact-icon icon-facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+              <span class="contact-text">Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/safiriaffairs" class="contact-method instagram" target="_blank">
+              <div class="contact-icon icon-instagram">
+                <i class="fab fa-instagram"></i>
+              </div>
+              <span class="contact-text">Instagram</span>
+            </a>
+            <a href="mailto:bookings@safiriaffairs.com?subject=Booking%20Inquiry&body=Hello%20Safiri%20Adventures,%20I'd%20like%20to%20book%20a%20trip." 
+               class="contact-method email" target="_blank">
+              <div class="contact-icon icon-email">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <span class="contact-text">Email</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="payment-option active" id="payOnArrivalOption">
+          <div class="option-header">
+            <div class="option-icon icon-arrival">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <h3 class="option-title">Pay on Arrival</h3>
+          </div>
+          <p class="option-description">
+            Secure your booking now without any upfront payment. Pay when you arrive and start your adventure immediately. Perfect for last-minute planners!
+          </p>
+          <div class="action-buttons">
+            <a href="https://wa.me/254700497619?text=Hello%20Safiri%20Adventures!%20I%20would%20like%20to%20make%20a%20booking%20for%20one%20of%20your%20amazing%20travel%20packages.%20Could%20you%20please%20guide%20me%20through%20the%20next%20steps%3F" 
+               target="_blank">
+              <button class="confirm-button" id="confirmBookingBtn">
+                <i class="fas fa-lock"></i> Confirm Booking
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary-section">
+      <h2 class="summary-title">Booking Summary</h2>
+      <div class="booking-image" id="itemImage"></div>
+      <div class="booking-details">
+        <h3 id="itemName">Loading your adventure...</h3>
+        <p class="booking-description" id="itemDescription">
+          Preparing your exclusive travel experience
+        </p>
+      </div>
+
+      <div class="price-breakdown">
+        <div class="price-row">
+          <span>Package Price</span>
+          <span id="basePrice">$0</span>
+        </div>
+        <div class="price-row">
+          <span>Service Fee</span>
+          <span>$19</span>
+        </div>
+        <div class="price-row">
+          <span>Taxes & Fees</span>
+          <span id="taxes">$0</span>
+        </div>
+      </div>
+
+      <div class="price-row price-total">
+        <span>Total Amount</span>
+        <span id="totalPrice">$0</span>
+      </div>
+
+      <div class="security-notice">
+        <i class="fas fa-shield-alt"></i> 100% Secure Booking • Best Price Guarantee
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; <span id="year"></span> Safiri Adventures. All rights reserved.</p>
+      <p>Travel with confidence, explore with passion</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('active');
+      });
+    });
+
+    // Get URL parameters - FIXED VERSION
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        item: params.get('item') || 'Safari Adventure',
+        price: params.get('price') || '1200',
+        image: params.get('image'),
+        desc: params.get('desc') || 'An unforgettable journey with Safiri Adventures',
+        type: params.get('type') || 'hotel'
+      };
+    }
+
+    // Initialize booking data
+    function initBooking() {
+      const { item, price, image, desc } = getUrlParams();
+      
+      // Calculate prices
+      const basePrice = parseInt(price) || 1200;
+      const serviceFee = 19;
+      const taxes = Math.round(basePrice * 0.08);
+      const totalPrice = basePrice + serviceFee + taxes;
+
+      // Update DOM with booking data
+      document.getElementById('itemName').textContent = item;
+      document.getElementById('itemDescription').textContent = desc;
+      document.getElementById('basePrice').textContent = `$${basePrice}`;
+      document.getElementById('taxes').textContent = `$${taxes}`;
+      document.getElementById('totalPrice').textContent = `$${totalPrice}`;
+
+      // Set image
+      const imgDiv = document.getElementById('itemImage');
+      if (image) {
+        // Decode the image URL and set it
+        try {
+          const decodedImage = decodeURIComponent(image);
+          imgDiv.style.backgroundImage = `url('${decodedImage}')`;
+        } catch (e) {
+          console.error('Error decoding image URL:', e);
+          setDefaultImage(imgDiv);
+        }
+      } else {
+        setDefaultImage(imgDiv);
+      }
+    }
+
+    function setDefaultImage(imgElement) {
+      imgElement.style.backgroundImage = "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60')";
+    }
+
+    // Payment option selection
+    const payOnArrivalOption = document.getElementById('payOnArrivalOption');
+    const contactAgentOption = document.getElementById('contactAgentOption');
+
+    [payOnArrivalOption, contactAgentOption].forEach(option => {
+      option.addEventListener('click', () => {
+        [payOnArrivalOption, contactAgentOption].forEach(opt => {
+          opt.classList.remove('active');
+        });
+        option.classList.add('active');
+      });
+    });
+
+    // Confirm Booking Button
+    document.getElementById('confirmBookingBtn').addEventListener('click', function() {
+      const button = this;
+      const originalText = button.innerHTML;
+      
+      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      button.disabled = true;
+
+      setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check"></i> Booking Confirmed!';
+        button.style.background = 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)';
+        
+        setTimeout(() => {
+          const itemName = document.getElementById('itemName').textContent;
+          const totalPrice = document.getElementById('totalPrice').textContent;
+          alert(`🎉 Booking Confirmed!\n\nYour ${itemName} adventure has been reserved!\n\nYou will receive a confirmation email shortly. Please bring your ID and this confirmation when you arrive.\n\nTotal due on arrival: ${totalPrice}`);
+        }, 500);
+      }, 2000);
+    });
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      initBooking();
+      
+      // Add smooth animations
+      const elements = document.querySelectorAll('.payment-option, .summary-section');
+      elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          el.style.transition = 'all 0.6s ease';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, index * 200);
+      });
+    });
+  </script>
+</body>
+</html>
